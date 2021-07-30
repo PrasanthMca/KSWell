@@ -69,13 +69,13 @@ public class GetTextFile {
       
        private static void findLinks(String url) throws IOException, Exception 
     {
-        
-          Document doc = Jsoup.parse(new URL(url), 5000);
+        try{
+          Document doc = Jsoup.parse(new URL(url), 10000);
 
     Elements resultLinks = doc.select("a");
     System.out.println("number of links: " + resultLinks.size());
     for (Element link : resultLinks) {
-        System.out.println();
+        
         String href = link.attr("href");
        
         if(link.text().contains(".txt"))
@@ -85,7 +85,11 @@ public class GetTextFile {
             downloadFile(new URL(href),OUTPUTFOLDERPATH+link.text().toString());
         }
     }
-
+    }
+        catch(Exception Exception)
+        {
+            System.out.println("Exception on URL : "+url);
+        }
     }
        
         public static void downloadFile(URL url, String fileName) throws Exception {
