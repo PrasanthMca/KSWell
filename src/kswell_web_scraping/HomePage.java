@@ -7,6 +7,7 @@ package kswell_web_scraping;
 
 import java.io.File;
 import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -38,6 +39,9 @@ private static String OUTPUT_PATH;
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Ks Well Web Scraping");
+        setResizable(false);
+        setSize(new java.awt.Dimension(379, 385));
 
         jButton1.setText("Select CSV Folder");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -166,12 +170,13 @@ private static String OUTPUT_PATH;
            //  System.out.println("Selected file: " + selectedFile.getAbsolutePath());
              CSV_PATH = selectedFile.getAbsolutePath();
              if(validateFile(CSV_PATH)){
-              jLabel1.setText("CSV Location :"+CSV_PATH);
+              jLabel1.setText(CSV_PATH);
                 //JOptionPane.showMessageDialog(rootPane, result);
                 jButton2.setEnabled(true);
              }
              else{
                     jLabel1.setText("");
+                       JOptionPane.showMessageDialog(null, "Select CSV file only");
              }
             }
     }
@@ -191,8 +196,8 @@ private static String OUTPUT_PATH;
             if (result == JFileChooser.APPROVE_OPTION) {
             File selectedFile = fileChooser.getSelectedFile();
            //  System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-             OUTPUT_PATH = selectedFile.getAbsolutePath();
-              jLabel2.setText("Output Location :"+OUTPUT_PATH);
+             OUTPUT_PATH = selectedFile.getAbsolutePath()+"\\";
+              jLabel2.setText(OUTPUT_PATH);
                 //JOptionPane.showMessageDialog(rootPane, result);
                 jButton4.setEnabled(true);
             }
