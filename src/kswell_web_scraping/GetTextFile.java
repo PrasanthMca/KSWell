@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import javax.swing.JOptionPane;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -24,12 +25,16 @@ import org.jsoup.select.Elements;
 public class GetTextFile {
       public static String CSVFILEPATH = "";
     public static String OUTPUTFOLDERPATH = "";
+     public static int NumberOfFiles = 0;
     
     GetTextFile(String CSV_path, String OutPut_path)
     {
         CSVFILEPATH = CSV_path;
         OUTPUTFOLDERPATH = OutPut_path;
+        NumberOfFiles = 0;
          ReadCSVFile();
+       
+            JOptionPane.showMessageDialog(null, "Completed "+NumberOfFiles+ " Files");
     }
       public static void ReadCSVFile()
      {
@@ -51,6 +56,7 @@ public class GetTextFile {
                     if(token.contains("http"))
                     {
                         findLinks(token);
+                        NumberOfFiles++;
                     }
                 }
             }
@@ -88,7 +94,7 @@ public class GetTextFile {
     }
         catch(Exception Exception)
         {
-            System.out.println("Exception on URL : "+url);
+            System.out.println("Exception on URL name : "+url);
         }
     }
        
